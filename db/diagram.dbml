@@ -1,0 +1,83 @@
+Project GreenPark {
+  database_type: 'PostgreSQL'
+  Note: '''
+    # Desafio Técnico Backend NodeJS
+
+    Desafio técnico de backend da Green Acesso.
+
+    Crie um projeto em Javascript ou Typescript, utilizando NodeJS e banco de dados SQL (qualquer um) para fazer a importação de um `.csv` e um `.pdf` para o nosso sistema e por fim a exportação de um `.pdf`.
+  '''
+}
+
+Table UserType {
+  id          int          [pk, increment, not null]
+  description varchar (50) [not null]
+  createdAt   timestamp    [not null, default: 'now()']
+  updatedAt   timestamp    [not null, default: 'now()']
+  deletedAt   timestamp
+}
+
+Table User {
+  id         varchar (100) [not null, pk]
+  name       varchar (50)  [not null]
+  username   varchar (50)  [not null]
+  password   varchar (150) [not null]
+  userTypeId int           [not null]
+  createdAt  timestamp     [not null, default: 'now()']
+  updatedAt  timestamp     [not null, default: 'now()']
+  deletedAt  timestamp
+}
+
+Table Permission {
+  id          int          [pk, increment, not null]
+  description varchar (50) [not null]
+  createdAt   timestamp    [not null, default: 'now()']
+  updatedAt   timestamp    [not null, default: 'now()']
+  deletedAt   timestamp
+}
+
+Table Module {
+  id          int          [pk, increment, not null]
+  description varchar (50) [not null]
+  createdAt   timestamp    [not null, default: 'now()']
+  updatedAt   timestamp    [not null, default: 'now()']
+  deletedAt   timestamp
+}
+
+Table PermissionGroup {
+  id           int       [pk, increment, not null]
+  userTypeId   int       [not null]
+  permissionId int       [not null]
+  moduleId     int       [not null]
+  status       boolean   [not null, default: true]
+  createdAt    timestamp [not null, default: 'now()']
+  updatedAt    timestamp [not null, default: 'now()']
+  deletedAt    timestamp
+}
+
+Table Batch {
+  id        int           [pk, not null]
+  name      varchar (100) [not null]
+  status    boolean       [not null, default: true]
+  createdAt timestamp     [not null, default: 'now()']
+  updatedAt timestamp     [not null, default: 'now()']
+  deletedAt timestamp
+}
+
+Table Ticket {
+  id        int            [pk, not null]
+  name      varchar (255)  [not null]
+  batchId   int            [not null]
+  value     decimal(10, 4) [not null, default: 0]
+  code      varchar(255)   [not null]
+  status    boolean        [not null, default: true]
+  createdAt timestamp      [not null, default: 'now()']
+  updatedAt timestamp      [not null, default: 'now()']
+  deletedAt timestamp
+}
+
+Ref "User_UserType_fk": User.userTypeId > UserType.id
+Ref "PermissionGroup_UserType_fk": PermissionGroup.userTypeId > UserType.id
+Ref "PermissionGroup_Permission_fk": PermissionGroup.permissionId > Permission.id
+Ref "PermissionGroup_Module_fk": PermissionGroup.moduleId > Module.id
+Ref "Ticket_Batch_fk": Ticket.batchId > Batch.id
