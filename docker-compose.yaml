@@ -18,4 +18,4 @@ services:
     env_file: .env
 
 volumes:
-  atena:
+  green-park-lobby:
