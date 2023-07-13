@@ -153,7 +153,7 @@ export class UserService {
       name,
       password,
       username,
-      type: userType,
+      userType,
     });
   }
 

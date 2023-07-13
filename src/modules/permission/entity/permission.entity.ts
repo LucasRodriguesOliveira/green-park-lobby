@@ -6,6 +6,7 @@ import {
   Entity,
   OneToMany,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -21,7 +22,7 @@ export class Permission {
     () => PermissionGroup,
     (permissionGroup) => permissionGroup.permission,
   )
-  permissionGroups: PermissionGroup[];
+  permissionGroups: Relation<PermissionGroup[]>;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

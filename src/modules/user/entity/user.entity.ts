@@ -6,6 +6,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Relation,
   UpdateDateColumn,
 } from 'typeorm';
 import { UserType } from '../../user-type/entity/user-type.entity';
@@ -30,7 +31,7 @@ export class User {
     referencedColumnName: 'id',
   })
   @ManyToOne(() => UserType, (userType) => userType.users)
-  userType: UserType;
+  userType: Relation<UserType>;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

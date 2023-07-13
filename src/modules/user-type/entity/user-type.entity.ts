@@ -8,6 +8,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  Relation,
 } from 'typeorm';
 
 @Entity({ name: 'user_type' })
@@ -19,13 +20,13 @@ export class UserType {
   description: string;
 
   @OneToMany(() => User, (user) => user.userType)
-  users: User[];
+  users: Relation<User[]>;
 
   @OneToMany(
     () => PermissionGroup,
     (permissionGroup) => permissionGroup.userType,
   )
-  permissionGroups: PermissionGroup[];
+  permissionGroups: Relation<PermissionGroup[]>;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

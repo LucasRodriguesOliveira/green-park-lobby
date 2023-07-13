@@ -34,7 +34,7 @@ import { AccessPermission } from '../auth/decorator/access-permission.decorator'
 
 @Controller('permission')
 @ApiTags('permission')
-@AppModule('PERMISSION')
+@AppModule('permission')
 export class PermissionController {
   constructor(private readonly permissionService: PermissionService) {}
 

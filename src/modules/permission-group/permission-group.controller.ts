@@ -32,11 +32,11 @@ import { PermissionGroupService } from './permission-group.service';
 
 @Controller('permission-group')
 @ApiTags('permission-group')
-@AppModule('PERMISSION_GROUP')
+@AppModule('permission_group')
 export class PermissionGroupController {
   constructor(
     private readonly permissionGroupService: PermissionGroupService,
-  ) { }
+  ) {}
 
   @Get('all/user-types')
   @HttpCode(HttpStatus.OK)

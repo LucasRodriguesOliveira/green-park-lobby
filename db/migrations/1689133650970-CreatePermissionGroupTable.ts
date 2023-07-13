@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreatePermissionGroupTable1689133650970
   implements MigrationInterface
@@ -57,6 +62,26 @@ export class CreatePermissionGroupTable1689133650970
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(this.permissionGroupTable);
+    await queryRunner.createForeignKeys(this.permissionGroupTable, [
+      new TableForeignKey({
+        name: 'PermissionGroup_UserType_fk',
+        columnNames: ['userTypeId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'user_type',
+      }),
+      new TableForeignKey({
+        name: 'PermissionGroup_Permission_fk',
+        columnNames: ['permissionId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'permission',
+      }),
+      new TableForeignKey({
+        name: 'PermissionGroup_Module_fk',
+        columnNames: ['moduleId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'module',
+      }),
+    ]);
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

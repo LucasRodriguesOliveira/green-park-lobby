@@ -18,7 +18,7 @@ import { AccessPermission } from './decorator/access-permission.decorator';
 
 @Controller('auth')
 @ApiTags('auth')
-@AppModule('AUTH')
+@AppModule('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 

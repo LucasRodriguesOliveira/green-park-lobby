@@ -7,11 +7,14 @@ export class CreateUserTypeSeed1689134310288 implements MigrationInterface {
     await queryRunner.manager.insert(this.tableName, {
       description: 'ADMIN',
     });
+    await queryRunner.manager.insert(this.tableName, {
+      description: 'DEFAULT',
+    });
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.manager.delete(this.tableName, {
-      description: 'ADMIN',
+      description: ['ADMIN', 'DEFAULT'],
     });
   }
 }

@@ -7,6 +7,7 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  Relation,
 } from 'typeorm';
 
 @Entity({ name: 'permission_group' })
@@ -20,7 +21,7 @@ export class PermissionGroup {
     referencedColumnName: 'id',
   })
   @ManyToOne(() => UserType, (userType) => userType.permissionGroups)
-  userType: UserType;
+  userType: Relation<UserType>;
 
   @JoinColumn({
     name: 'permissionId',
@@ -28,7 +29,7 @@ export class PermissionGroup {
     referencedColumnName: 'id',
   })
   @ManyToOne(() => Permission, (permission) => permission.permissionGroups)
-  permission: Permission;
+  permission: Relation<Permission>;
 
   @JoinColumn({
     name: 'moduleId',
@@ -36,7 +37,7 @@ export class PermissionGroup {
     referencedColumnName: 'id',
   })
   @ManyToOne(() => Module, (module) => module.permissionGroups)
-  module: Module;
+  module: Relation<Module>;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

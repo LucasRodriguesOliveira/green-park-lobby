@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreateTicketTable1689134146627 implements MigrationInterface {
   private ticketTable: Table = new Table({
@@ -16,6 +21,30 @@ export class CreateTicketTable1689134146627 implements MigrationInterface {
         type: 'varchar',
         length: '100',
         isNullable: false,
+      },
+      {
+        name: 'batchId',
+        type: 'int',
+        isNullable: false,
+      },
+      {
+        name: 'value',
+        type: 'decimal',
+        precision: 10,
+        scale: 4,
+        isNullable: false,
+      },
+      {
+        name: 'code',
+        type: 'varchar',
+        length: '255',
+        isNullable: false,
+      },
+      {
+        name: 'status',
+        type: 'boolean',
+        isNullable: false,
+        default: true,
       },
       {
         name: 'createdAt',
@@ -39,6 +68,15 @@ export class CreateTicketTable1689134146627 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(this.ticketTable);
+    await queryRunner.createForeignKey(
+      this.ticketTable,
+      new TableForeignKey({
+        name: 'Ticket_Batch_fk',
+        columnNames: ['batchId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'batch',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

@@ -10,11 +10,12 @@ import { JWTService } from './jwt.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserService } from '../user/user.service';
+import { UserType } from '../user-type/entity/user-type.entity';
 
 @Module({
   imports: [
     ConfigModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, UserType]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.registerAsync(JWTModuleConfig()),
     UserModule,

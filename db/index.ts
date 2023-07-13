@@ -1,4 +1,5 @@
 import { CreateUserTypeTable1689132069776 } from './migrations/1689132069776-CreateUserTypeTable';
+import { CreateUUIDGenerateFunction1689132595604 } from './migrations/1689132595604-CreateUUIDGenerateFunction';
 import { CreateUserTable1689132595646 } from './migrations/1689132595646-CreateUserTable';
 import { CreatePermissionTable1689133146682 } from './migrations/1689133146682-CreatePermissionTable';
 import { CreateModuleTable1689133477707 } from './migrations/1689133477707-CreateModuleTable';
@@ -13,6 +14,7 @@ import { CreatePermissionGroupSeed1689135245029 } from './migrations/16891352450
 
 export const migrations = [
   CreateUserTypeTable1689132069776,
+  CreateUUIDGenerateFunction1689132595604,
   CreateUserTable1689132595646,
   CreatePermissionTable1689133146682,
   CreateModuleTable1689133477707,

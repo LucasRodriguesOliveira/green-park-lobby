@@ -6,6 +6,7 @@ import { User } from '../user/entity/user.entity';
 import { Module as ModuleEntity } from '../module/entity/module.entity';
 import { Permission } from '../permission/entity/permission.entity';
 import { PermissionGroup } from '../permission-group/entity/permission-group.entity';
+import { Batch } from '../batch/entity/batch.entity';
 
 @Module({
   imports: [
@@ -16,8 +17,9 @@ import { PermissionGroup } from '../permission-group/entity/permission-group.ent
         ModuleEntity,
         Permission,
         PermissionGroup,
+        Batch,
       ]),
     ),
   ],
 })
-export class TypeOrmPostgreModule {}
+export class TypeOrmPostgresModule {}

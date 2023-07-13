@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export class CreateUserTable1689132595646 implements MigrationInterface {
   private userTable: Table = new Table({
@@ -57,6 +62,15 @@ export class CreateUserTable1689132595646 implements MigrationInterface {
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(this.userTable);
+    await queryRunner.createForeignKey(
+      this.userTable,
+      new TableForeignKey({
+        name: 'User_UserType_fk',
+        columnNames: ['userTypeId'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'user_type',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

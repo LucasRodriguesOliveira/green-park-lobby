@@ -17,6 +17,9 @@ export class CreateModuleSeed1689135021411 implements MigrationInterface {
       description: 'user_type',
     });
     await queryRunner.manager.insert(this.tableName, {
+      description: 'permission_group',
+    });
+    await queryRunner.manager.insert(this.tableName, {
       description: 'user',
     });
     await queryRunner.manager.insert(this.tableName, {
