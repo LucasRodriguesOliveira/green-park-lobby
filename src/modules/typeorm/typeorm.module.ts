@@ -7,6 +7,7 @@ import { Module as ModuleEntity } from '../module/entity/module.entity';
 import { Permission } from '../permission/entity/permission.entity';
 import { PermissionGroup } from '../permission-group/entity/permission-group.entity';
 import { Batch } from '../batch/entity/batch.entity';
+import { Ticket } from '../ticket/entity/ticket.entity';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { Batch } from '../batch/entity/batch.entity';
         Permission,
         PermissionGroup,
         Batch,
+        Ticket,
       ]),
     ),
   ],

@@ -9,6 +9,7 @@ import { PermissionModule } from './modules/permission/permission.module';
 import { ModuleModule } from './modules/module/module.module';
 import { PermissionGroupModule } from './modules/permission-group/permission-group.module';
 import { BatchModule } from './modules/batch/batch.module';
+import { TicketModule } from './modules/ticket/ticket.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { BatchModule } from './modules/batch/batch.module';
     ModuleModule,
     PermissionGroupModule,
     BatchModule,
+    TicketModule,
   ],
 })
 export class AppModule {}

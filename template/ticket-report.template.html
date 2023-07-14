@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relatório</title>
+  <style>
+    @import url(https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;0,700;1,400&display=swap);h1,td.center{text-align:center}:root{margin:0;padding:0;box-sizing:border-box;font-size:16px}body{color:#333;padding:2%;font-family:Roboto,'segoe UI',Arial,Helvetica,sans-serif;display:grid;height: 100vh;}h3{color:#e90022}h1{color:#111}.container{display:flex;justify-content:center;align-items:center;}table{width:100%;border-collapse:collapse;background-color:#fbfbfb;box-shadow:1px 1px 3px rgb(0 0 0 / .15),3px 3px 6px rgb(0 0 0 / .2);padding:16px 32px}thead tr{background-color:#009879;text-align:left}th{color:#fbfbfb;padding:12px 24px;font-size:1.2rem}th:first-child{border-radius:4px 0 0 4px}th:last-child{border-radius:0 4px 4px 0}tbody tr>*{border-bottom:1px solid #ddd;padding:8px 16px}table tbody tr:nth-of-type(2n){background-color:rgb(0 150 125 / .15)}tbody tr:last-of-type{border-bottom:2px solid #009879}tbody tr:hover{font-weight:700;color:#009879}td.text-big{font-weight:700;font-size:1.1rem}
+  </style>
+</head>
+<body>
+  <h3>Relatório:</h3>
+  <h1>Boletos</h1>
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Nome Sacado</th>
+          <th>Lote</th>
+          <th>Valor</th>
+          <th>Linha Digitável</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each tickets}}
+        <tr>
+          <td class="center">{{this.id}}</td>
+          <td class="text-big">{{this.name}}</td>
+          <td class="center">{{this.batch.id}}</td>
+          <td class="text-big center">{{this.fmtValue}}</td>
+          <td>{{this.code}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
