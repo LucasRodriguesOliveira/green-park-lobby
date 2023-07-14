@@ -90,9 +90,8 @@ for the sake of the example, desconsider all columns that are not mentionated
 </details>
 
 <details>
-for the sake of the example, desconsider all columns that are not mentionated
-
 <summary>Permission table</summary>
+for the sake of the example, desconsider all columns that are not mentionated
 
 | id | description |
 | --- | --- |
