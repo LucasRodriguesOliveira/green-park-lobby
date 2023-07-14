@@ -102,7 +102,7 @@ for the sake of the example, desconsider all columns that are not mentionated
 | 5 | DELETE |
 </details>
 
-<detais>
+<details>
 <summary>Module table</summary>
 for the sake of the example, desconsider all columns that are not mentionated
 
