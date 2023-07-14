@@ -25,10 +25,24 @@ Desafio técnico de backend da Green Acesso.
   </details>
 </details>
 
+Add a file at the root of the project: `.env`
+you can copy/paste `.env.example`
+
 you can use this application with docker also:
 `docker compose up -d`
 
-either with docker or in local machine, typeorm global package will be necessary
+warning: this project contains a package `bcrypt` that is used to encrypt passwords
+before saving in the database, due to differences about the package in windows and linux (used in docker and the container) it throws some errors
+Personal recommendation: if you are using windows, i sugest you to run directly in your
+computer
+
+either with docker or in local machine, typeorm global package will be necessary (npx or global installation)
+`yarn global add typeorm`
+
+with typeorm available and a database up and running, run the migrations by:
+`yarn typeorm migration:run -d ./db/postgresql`
+
+wait for completition and you finally can
 
 ## Running the app
 
@@ -56,16 +70,6 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
 ## License
 
-Nest is [MIT licensed](LICENSE).
+Green Park Lobby is [MIT licensed](LICENSE).
