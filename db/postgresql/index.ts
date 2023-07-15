@@ -2,9 +2,10 @@ import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
 import { migrations } from '..';
 import { sep } from 'path';
+import { cwd } from 'process';
 
 const result = config({
-  path: `${process.cwd()}${sep}.env`,
+  path: `${cwd()}${sep}.env${process.env.NODE_ENV === 'test' ? '.test' : ''}`,
 });
 
 console.log('Using Datasource:', result);
