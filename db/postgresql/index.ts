@@ -4,7 +4,9 @@ import { migrations } from '..';
 import { sep } from 'path';
 
 const result = config({
-  path: `${process.cwd()}${sep}.env`,
+  path: `${process.cwd()}${sep}.env${
+    process.env.NODE_ENV === 'test' ? '.test' : ''
+  }`,
 });
 
 console.log('Using Datasource:', result);
