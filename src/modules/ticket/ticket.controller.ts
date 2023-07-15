@@ -6,6 +6,7 @@ import {
   Post,
   Query,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
   ValidationPipe,
 } from '@nestjs/common';
@@ -25,6 +26,9 @@ import { CreateTicketReportResponseDto } from './dto/create-ticket-report-respon
 import { ListTicketResponseDto } from './dto/list-ticket-response.dto';
 import { QueryTicketDto } from './dto/query-ticket.dto';
 import { TicketService } from './ticket.service';
+import { JwtGuard } from '../auth/guard/jwt.guard';
+import { RoleGuard } from '../auth/guard/role.guard';
+import { AccessPermission } from '../auth/decorator/access-permission.decorator';
 
 @Controller('ticket')
 @ApiTags('ticket')
@@ -50,6 +54,8 @@ export class TicketController {
       },
     },
   })
+  @UseGuards(JwtGuard, RoleGuard)
+  @AccessPermission('CREATE')
   public async uploadTicketCSV(
     @UploadedFile(
       new ParseFilePipe({
@@ -75,6 +81,8 @@ export class TicketController {
       },
     },
   })
+  @UseGuards(JwtGuard, RoleGuard)
+  @AccessPermission('UPLOAD_TICKETS')
   @ApiCreatedResponse()
   public async uploadTicketPDF(
     @UploadedFile(
@@ -104,7 +112,9 @@ export class TicketController {
     description:
       'Can either return a base64 or a resultList based on query option `report`',
   })
-  public async test(
+  @UseGuards(JwtGuard, RoleGuard)
+  @AccessPermission('LIST')
+  public async list(
     @Query(ValidationPipe) queryTicketDto: QueryTicketDto,
   ): Promise<ListTicketResponseDto[] | CreateTicketReportResponseDto> {
     return this.ticketService.list(queryTicketDto);

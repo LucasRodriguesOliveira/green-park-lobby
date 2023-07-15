@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { parse } from 'csv/sync';
 import { readFileSync } from 'fs';
-import pdf from 'pdf-creator-node';
+import * as pdf from 'pdf-creator-node';
 import { PDFExtract } from 'pdf.js-extract';
 import { cwd } from 'process';
 import { Like, Repository } from 'typeorm';
@@ -109,36 +109,38 @@ export class TicketService {
 
     // assign each ticket from pdf with it respective ticket in database
     // produces a pdf file for each one of them in folder `boletos` at root
-    formattedPages
-      .map((page) => ({
-        content: page,
-        id: tickets.find((ticket) =>
-          page.includes(`UNIDADE: ${parseInt(ticket.batch.name)}`),
-        ).id,
-      }))
-      .forEach((ticket) => {
-        pdf.create(
-          {
-            html: readFileSync(
-              `${cwd()}/template/ticket.template.html`,
-              'utf8',
-            ),
-            data: ticket,
-            path: `./boletos/${ticket.id}.pdf`,
-            type: '',
-          },
-          {
-            format: 'Letter',
-            orientation: 'portrait',
-            border: '10mm',
-          },
-        );
-      });
+    return Promise.all(
+      formattedPages
+        .map((page) => ({
+          content: page,
+          id: tickets.find((ticket) =>
+            page.includes(`UNIDADE: ${parseInt(ticket.batch.name)}`),
+          ).id,
+        }))
+        .map((ticket) => {
+          return pdf.create(
+            {
+              html: readFileSync(
+                `${cwd()}/template/ticket.template.html`,
+                'utf8',
+              ),
+              data: ticket,
+              path: `./boletos/${ticket.id}.pdf`,
+              type: '',
+            },
+            {
+              format: 'Letter',
+              orientation: 'portrait',
+              border: '10mm',
+            },
+          );
+        }),
+    );
   }
 
   public async list(
     queryTicketDto: QueryTicketDto,
-  ): Promise<ListTicketResponseDto[] | any> {
+  ): Promise<ListTicketResponseDto[] | CreateTicketReportResponseDto> {
     const queryBuilder = this.ticketRepository
       .createQueryBuilder('ticket')
       .select('ticket.id')
@@ -190,7 +192,8 @@ export class TicketService {
     );
     return CreateTicketReportResponseDto.from(report);
   }
-  public async createTicketReport(
+
+  private async createTicketReport(
     tickets: Ticket[],
     reportOption: ReportOptions,
   ): Promise<Buffer> {

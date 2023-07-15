@@ -12,11 +12,22 @@ export class CreatePermissionSeed1689134860003 implements MigrationInterface {
     await queryRunner.manager.insert(this.tableName, {
       description: 'REGISTER',
     });
+    await queryRunner.manager.insert(this.tableName, {
+      description: 'UPLOAD_TICKETS',
+    });
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.manager.delete(this.tableName, {
-      description: ['FIND', 'CREATE', 'LIST', 'UPDATE', 'DELETE', 'REGISTER'],
+      description: [
+        'FIND',
+        'CREATE',
+        'LIST',
+        'UPDATE',
+        'DELETE',
+        'REGISTER',
+        'UPLOAD_TICKETS',
+      ],
     });
   }
 }
