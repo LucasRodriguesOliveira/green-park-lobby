@@ -31,6 +31,7 @@ describe('BatchService', () => {
     id: 1,
     name: 'test',
     status: true,
+    tickets: [],
     createdAt: new Date(),
     updatedAt: new Date(),
     deletedAt: new Date(),

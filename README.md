@@ -166,7 +166,6 @@ only those `UserType` with permission `LIST` at module `user` can access this ro
 
 all the modules, permissions, user types and permission groups needed to work at the bare minimum have been saved when the migrations were ran
 
-in this project, only `ticket` and `batch` modules has not been saved at `module` table
 feel free to modify the project to allow anyone accessing route or use the api to add the necessary information to allow access. Also, there is a decorator that allow to bypass any permission, even though the specific user-type does not have permission to access the route, simply add at method-level: `@UserRole('YOUR_USER_TYPE_HERE')`
 `UserTypeEnum` contains both `ADMIN` and `DEFAULT` types for this situation, you can also add any usertype you have created
 

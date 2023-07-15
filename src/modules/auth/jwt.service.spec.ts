@@ -10,7 +10,7 @@ import { UserTypeService } from '../user-type/user-type.service';
 import { NotFoundException } from '@nestjs/common';
 import { FindUserWithPermissions } from '../user/dto/find-user-with-permissions';
 
-describe.only('JwtService', () => {
+describe('JwtService', () => {
   let jwtService: JWTService;
   let userService: UserService;
   let userTypeService: UserTypeService;
