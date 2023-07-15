@@ -4,7 +4,6 @@ import { migrations } from '..';
 import { sep } from 'path';
 import { cwd } from 'process';
 
-console.log('ENV: ', process.env.NODE_ENV);
 const result = config({
   path: `${cwd()}${sep}.env${process.env.NODE_ENV === 'test' ? '.test' : ''}`,
 });

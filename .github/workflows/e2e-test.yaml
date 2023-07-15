@@ -46,6 +46,8 @@ jobs:
       - run: yarn build
       - name: Run migrations in postgres db
         run: yarn typeorm migration:run -- -d ./db/postgresql
+        env:
+          NODE_ENV: test
       - name: Run e2e tests
         run: yarn test:e2e
         env:
