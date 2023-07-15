@@ -2,6 +2,7 @@
 
 [![unit-test](https://github.com/LucasRodriguesOliveira/green-park-lobby/actions/workflows/unit-test.yaml/badge.svg?event=pull_request)](https://github.com/LucasRodriguesOliveira/green-park-lobby/actions/workflows/unit-test.yaml)
 [![e2e-test](https://github.com/LucasRodriguesOliveira/green-park-lobby/actions/workflows/e2e-test.yaml/badge.svg?event=pull_request)](https://github.com/LucasRodriguesOliveira/green-park-lobby/actions/workflows/e2e-test.yaml)
+[![Coverage Status](https://coveralls.io/repos/github/LucasRodriguesOliveira/green-park-lobby/badge.svg?branch=ft/ticket-batch)](https://coveralls.io/github/LucasRodriguesOliveira/green-park-lobby?branch=ft/ticket-batch)
 
 ## Description
 Desafio técnico de backend da Green Acesso.

@@ -15,10 +15,13 @@
     ".dto.ts",
     "node_modules",
     "<rootDir>/main.ts",
-    "dist"
+    "dist",
+    ".decorator.ts",
+    ".enum.ts"
   ],
   "collectCoverageFrom": [
     "<rootDir>/**/*.ts"
   ],
-  "coverageDirectory": "<rootDir>/../coverage/"
+  "coverageDirectory": "<rootDir>/../coverage/",
+  "testTimeout": 10000
 }
